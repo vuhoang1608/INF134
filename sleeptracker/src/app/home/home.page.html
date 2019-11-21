@@ -1,14 +1,30 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      BetterSleep
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="sleep-track">
+        <ion-icon name="bed"></ion-icon>
+        <ion-label>Schedule</ion-label>
+        <ion-badge>6</ion-badge>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="sleep-log">
+        <ion-icon name="clipboard"></ion-icon>
+        <ion-label>Sleep Log</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="sleep-data">
+        <ion-icon name="stats"></ion-icon>
+        <ion-label>Sleep Data</ion-label>
+      </ion-tab-button>
+  
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-content>
