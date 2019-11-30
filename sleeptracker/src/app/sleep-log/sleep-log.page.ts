@@ -4,6 +4,7 @@ import {SleepData} from '../data/sleep-data';
 import {StanfordSleepinessData} from '../data/stanford-sleepiness-data';
 import { NavController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sleep-log',
@@ -15,7 +16,7 @@ export class SleepLogPage implements OnInit {
   sleepScaleValues:any[] = [];
   sleepData:StanfordSleepinessData;
   constructor(public sleepService: SleepService, public navCtrl: NavController,
-                  public toastController: ToastController) {}
+                  public toastController: ToastController, public alertController: AlertController) {}
 
   ngOnInit() {
     //this.sleepScaleValues = StanfordSleepinessData.ScaleValues.slice(1,7);
@@ -41,14 +42,17 @@ export class SleepLogPage implements OnInit {
 
       //reset Radio button
       this.sleepScaleValues[this.loggedValue-1]["selected"] = false;
+      //reset loggedValue to trigger alert
+      this.loggedValue = -1;
     }
     else{
-      this.toastController.create({
-        message: 'Please pick an option!',
-        duration: 1500
-      }).then((toast) => {
-        toast.present();
-    });
+      this.alertController.create({
+        header: 'Warning',
+        message: "Please pick an option! Then hit 'Submit'.",
+        buttons: ['OK']
+        }).then((alert) => {
+        alert.present();
+        });
     }
   }
 
