@@ -8,7 +8,7 @@
   <ion-list>
     <ion-radio-group>
       <ion-item *ngFor = "let item of sleepScaleValues" (ionSelect)="radioSelect($event)">
-        <ion-label text-wrap>{{item.item}}</ion-label>
+        <ion-label class="ion-text-wrap">{{item.item}}</ion-label>
         <ion-radio value = "{{item.value}}" checked = "{{item.selected}}"></ion-radio>
       </ion-item>
     </ion-radio-group>

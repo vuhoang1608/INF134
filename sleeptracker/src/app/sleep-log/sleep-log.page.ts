@@ -23,22 +23,33 @@ export class SleepLogPage implements OnInit {
       this.sleepScaleValues.push({'item':StanfordSleepinessData.ScaleValues[i],
         'selected': false,'value':i});
     }    
+    this.loggedValue = -1;
   }
   submit(){
-    this.sleepData = new StanfordSleepinessData(this.loggedValue, new Date(Date.now()));
-    this.sleepService.logSleepinessData(this.sleepData);
-    console.log(SleepService.AllSleepData);
+    if(this.loggedValue != -1){
+      this.sleepData = new StanfordSleepinessData(this.loggedValue, new Date(Date.now()));
+      this.sleepService.logSleepinessData(this.sleepData);
+      console.log(SleepService.AllSleepData);
 
-    //Show notification
-    this.toastController.create({
-        message: 'Data submitted!',
+      //Show notification
+      this.toastController.create({
+          message: 'Data submitted!',
+          duration: 1500
+        }).then((toast) => {
+          toast.present();
+      });
+
+      //reset Radio button
+      this.sleepScaleValues[this.loggedValue-1]["selected"] = false;
+    }
+    else{
+      this.toastController.create({
+        message: 'Please pick an option!',
         duration: 1500
       }).then((toast) => {
         toast.present();
     });
-
-    //reset Radio button
-    this.sleepScaleValues[this.loggedValue-1]["selected"] = false;
+    }
   }
 
   radioSelect(event) {
