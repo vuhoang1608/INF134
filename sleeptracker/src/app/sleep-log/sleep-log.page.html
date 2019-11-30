@@ -1,9 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>sleep_log</ion-title>
+    <ion-title>HOW DO YOU FELL TODAY?</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+    <ion-radio-group>
+      <ion-item *ngFor = "let item of sleepScaleValues" (ionSelect)="radioSelect($event)">
+        <ion-label text-wrap>{{item.item}}</ion-label>
+        <ion-radio value = "{{item.value}}" checked = "{{item.selected}}"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+  
+  <ion-button (click)="submit()" color="primary" expand="block">Submit</ion-button>
 </ion-content>
