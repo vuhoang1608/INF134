@@ -1,9 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>sleep_data</ion-title>
+    <ion-title>View your sleep data</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h1>Sleep data</h1>
+    <ion-slides pager>
+        <ion-slide>
+          <ion-card>
+            <ion-card-header>Overnight sleep data</ion-card-header>
+            <ion-card-content>              
+                  <ion-item *ngFor = "let item of overnightSleepData">
+                    <ion-label class="ion-text-wrap">{{item.loggedAt}} : {{item.summaryString()}} 
+                    </ion-label>
+                  </ion-item>                         
+            </ion-card-content>
+            </ion-card>
+        </ion-slide>
+
+        <ion-slide>
+            <ion-card>
+              <ion-card-header>Sleepiness data</ion-card-header>
+              <ion-card-content>              
+                  <ion-item *ngFor = "let item of sleepinessData">
+                    <ion-label class="ion-text-wrap">{{item.loggedAt}} : {{item.loggedValue}}</ion-label>
+                  </ion-item>                         
+            </ion-card-content>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
 </ion-content>
