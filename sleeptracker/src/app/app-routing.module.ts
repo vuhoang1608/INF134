@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'sleep-data',
     loadChildren: () => import('./sleep-data/sleep-data.module').then( m => m.SleepDataPageModule)
+  },
+  {
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
   }
 
 

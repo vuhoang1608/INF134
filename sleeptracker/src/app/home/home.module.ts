@@ -10,50 +10,7 @@ import { HomePage } from './home.page';
 const routes: Routes = [
   {
     path: 'home',
-    component: HomePage,
-    children:
-      [
-        {
-          path: 'sleep-track',
-          children:
-            [
-              {
-                path: '',
-                loadChildren: '../sleep-track/sleep-track.module#SleepTrackPageModule'
-              }
-            ]
-        },
-        {
-          path: 'sleep-log',
-          children:
-            [
-              {
-                path: '',
-                loadChildren: '../sleep-log/sleep-log.module#SleepLogPageModule'
-              }
-            ]
-        },
-        {
-          path: 'sleep-data',
-          children:
-            [
-              {
-                path: '',
-                loadChildren: '../sleep-data/sleep-data.module#SleepDataPageModule'
-              }
-            ]
-        },
-        {
-          path: '',
-          redirectTo: '/home/sleep-track',
-          pathMatch: 'full'
-        }
-      ]
-  },
-  {
-    path: '',
-    redirectTo:'/home/sleep-track',
-    pathMatch: 'full'
+    component: HomePage
   }
 ];
 
@@ -80,4 +37,5 @@ export class HomePageModule implements OnInit {
     this.btnName = "Change Text";
     console.log("button click");
   }
+
 }
