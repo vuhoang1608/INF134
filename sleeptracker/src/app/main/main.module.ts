@@ -1,14 +1,13 @@
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Routes, RouterModule } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { MainPage } from './main.page';
 
 const routes: Routes = [
   {
-    path: 'main',
+    path: '',
     component: MainPage,
     children:
       [
@@ -18,7 +17,7 @@ const routes: Routes = [
             [
               {
                 path: '',
-                loadChildren: '../sleep-track/sleep-track.module#SleepTrackPageModule'
+                loadChildren: () => import('../sleep-track/sleep-track.module').then( m => m.SleepTrackPageModule)
               }
             ]
         },
@@ -28,7 +27,7 @@ const routes: Routes = [
             [
               {
                 path: '',
-                loadChildren: '../sleep-log/sleep-log.module#SleepLogPageModule'
+                loadChildren: () => import('../sleep-data/sleep-data.module').then( m => m.SleepDataPageModule)
               }
             ]
         },
@@ -38,41 +37,27 @@ const routes: Routes = [
             [
               {
                 path: '',
-                loadChildren: '../sleep-data/sleep-data.module#SleepDataPageModule'
+                loadChildren: () => import('../sleep-log/sleep-log.module').then( m => m.SleepLogPageModule)
               }
             ]
-        },
-        {
-          path: '',
-          redirectTo: '/main/sleep-track',
-          pathMatch: 'full'
         }
       ]
+  },
+  {
+    path: 'main',
+    redirectTo: '/main/sleep-track',
+    pathMatch: 'full'
   }
 ];
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ],
   declarations: [MainPage]
 })
- 
-export class MainPageModule implements OnInit {
-  btnName:string = "Click me";
-  constructor(public navCtrl: NavController) {}
-
-  ngOnInit() {
-    this.btnName = "Click me";
-  }
-  
-  goToPage() 
-  {
-    this.navCtrl.navigateForward('/sleep-track');
-    this.btnName = "Change Text";
-    console.log("button click");
-  }
-}
+export class MainPageModule { }

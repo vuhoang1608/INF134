@@ -4,17 +4,27 @@ import { SleepData } from '../data/sleep-data';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 import { NavController } from '@ionic/angular';
+import { RouterModule, Routes } from '@angular/router';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.page.html',
-  styleUrls: ['./main.page.scss'],
+	selector: 'app-main',
+	templateUrl: './main.page.html',
+	styleUrls: ['./main.page.scss'],
 })
+
 export class MainPage implements OnInit {
+  btnName:string = "Click me";
 
   constructor(public sleepService: SleepService, public navCtrl: NavController) {}
 
+  goToPage() 
+  {
+    this.navCtrl.navigateForward('/sleep-track');
+    this.btnName = "Change Text";
+    console.log("button click");
+  }
 	ngOnInit() {
+		this.btnName = "Click me";
 		console.log(this.allSleepData);
 	}
 
@@ -26,5 +36,4 @@ export class MainPage implements OnInit {
 	get allSleepinessData(){
 		return SleepService.AllSleepinessData;
 	}
-
 }

@@ -11,11 +11,12 @@ import { HomePageModule } from './home.module';
 	templateUrl: 'home.page.html',
 	styleUrls: ['home.page.scss'],
 })
+
 export class HomePage {
 	constructor(public sleepService: SleepService, public navCtrl: NavController, public alertController: AlertController) {}
 
 	ngOnInit() {
-		console.log(this.allSleepData);
+		//console.log(this.allSleepData);
 	}
 
 	async presentAlertConfirm() {
@@ -32,6 +33,7 @@ export class HomePage {
 			}, {
 			  text: 'Yes',
 			  handler: () => {
+				this.navCtrl.navigateForward('/main');
 				console.log('Confirm Okay');
 			  }
 			}
@@ -41,12 +43,12 @@ export class HomePage {
 		await alert.present();
 	  }
 
-	/* Ionic doesn't allow bindings to static variables, so this getter can be used instead. */
-	get allSleepData() {
-		return SleepService.AllSleepData;		
-	}
+	// /* Ionic doesn't allow bindings to static variables, so this getter can be used instead. */
+	// get allSleepData() {
+	// 	return SleepService.AllSleepData;		
+	// }
 
-	get allSleepinessData(){
-		return SleepService.AllSleepinessData;
-	}
+	// get allSleepinessData(){
+	// 	return SleepService.AllSleepinessData;
+	// }
 }
