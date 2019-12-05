@@ -17,11 +17,14 @@ import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 export class SleepDataPage implements OnInit {
   sleepinessData:StanfordSleepinessData[];
   overnightSleepData:OvernightSleepData[];
+  searchbar:any;
+  items:Array<any>;
+  
   constructor(public sleepService: SleepService) {
     this.sleepinessData = SleepService.AllSleepinessData;
-    this.overnightSleepData = SleepService.AllOvernightData;
+    this.overnightSleepData = SleepService.AllOvernightData;   
    }
   
-  ngOnInit() {
+  ngOnInit() {    
   }
 }

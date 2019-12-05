@@ -15,6 +15,7 @@ export class SleepLogPage implements OnInit {
   loggedValue:number;
   sleepScaleValues:any[] = [];
   sleepData:StanfordSleepinessData;
+  loggedLocation:String;
   constructor(public sleepService: SleepService, public navCtrl: NavController,
                   public toastController: ToastController, public alertController: AlertController) {}
 
@@ -25,17 +26,18 @@ export class SleepLogPage implements OnInit {
         'selected': false,'value':i});
     }    
     this.loggedValue = -1;
+    this.loggedLocation = "";
   }
   submit(){
-    if(this.loggedValue != -1){
-      this.sleepData = new StanfordSleepinessData(this.loggedValue, new Date(Date.now()));
+    if(this.loggedValue != -1 && this.loggedLocation != ""){
+      this.sleepData = new StanfordSleepinessData(this.loggedValue, this.loggedLocation, new Date(Date.now()));
       this.sleepService.logSleepinessData(this.sleepData);
       console.log(SleepService.AllSleepData);
 
       //Show notification
       this.toastController.create({
-          message: 'Data submitted!',
-          duration: 1500
+          message: 'Sleepiness data logged!',
+          duration: 1000
         }).then((toast) => {
           toast.present();
       });
@@ -44,15 +46,36 @@ export class SleepLogPage implements OnInit {
       this.sleepScaleValues[this.loggedValue-1]["selected"] = false;
       //reset loggedValue to trigger alert
       this.loggedValue = -1;
+      this.loggedLocation = "";
     }
     else{
-      this.alertController.create({
-        header: 'Warning',
-        message: "Please pick an option! Then hit 'Submit'.",
-        buttons: ['OK']
-        }).then((alert) => {
-        alert.present();
-        });
+      if(this.loggedValue == -1 && this.loggedLocation != ""){
+        this.alertController.create({
+          header: 'Warning',        
+          message: "Please pick an option! Then hit 'Submit'.",
+          buttons: ['OK']
+          }).then((alert) => {
+          alert.present();
+          });
+      }
+      else if(this.loggedValue != -1 && this.loggedLocation == ""){
+        this.alertController.create({
+          header: 'Warning',        
+          message: "Please put your location! Then hit 'Submit'.",
+          buttons: ['OK']
+          }).then((alert) => {
+          alert.present();
+          });
+      }
+      else{
+        this.alertController.create({
+          header: 'Warning',        
+          message: "Please put your location and pick an option! Then hit 'Submit'.",
+          buttons: ['OK']
+          }).then((alert) => {
+          alert.present();
+          }); 
+      }
     }
   }
 
