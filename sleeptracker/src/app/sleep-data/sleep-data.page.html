@@ -10,22 +10,55 @@
           <ion-card>
             <ion-card-header>Overnight sleep data</ion-card-header>
             <ion-card-content>              
-                  <ion-item *ngFor = "let item of overnightSleepData">
-                    <ion-label class="ion-text-wrap">{{item.loggedAt}} : {{item.summaryString()}} 
-                    </ion-label>
-                  </ion-item>                         
-            </ion-card-content>
+                <ion-item *ngFor = "let item of overnightSleepData">
+                  <ion-label>
+                    <h2>{{item.summaryString()}}</h2>
+                    <p class="ion-text-wrap">
+                      <ion-icon name="time" slot="start"></ion-icon>
+                      {{item.dateString()}}
+                    </p>
+                  </ion-label>
+                </ion-item>                         
+          </ion-card-content>
             </ion-card>
         </ion-slide>
 
         <ion-slide>
             <ion-card>
-              <ion-card-header>Sleepiness data</ion-card-header>
-              <ion-card-content>              
-                  <ion-item *ngFor = "let item of sleepinessData">
-                    <ion-label class="ion-text-wrap">{{item.loggedAt}} : {{item.loggedValue}}</ion-label>
-                  </ion-item>                         
-            </ion-card-content>
+              <ion-card-header >Sleepiness data</ion-card-header> 
+              <ion-card-content> 
+                <ion-list>
+                  <ion-item-sliding>
+                    <ion-item *ngFor = "let item of sleepinessData">
+                      <ion-avatar *ngIf="item.loggedValue == 1 || item.loggedValue == 2">
+                        <img src='./assets/icon/circle-green.png'>
+                      </ion-avatar>
+                      <ion-avatar *ngIf="item.loggedValue == 3 || item.loggedValue == 4 || item.loggedValue == 5">
+                        <img src='./assets/icon/circle-orange.png'>
+                      </ion-avatar>
+                      <ion-avatar *ngIf="item.loggedValue == 6 || item.loggedValue == 7">
+                          <img src='./assets/icon/circle-red.png'>
+                      </ion-avatar>
+                      <ion-label>
+                        <h2 class="ion-text-wrap" *ngIf="item.loggedValue == 1 || item.loggedValue == 2">
+                          Active, functioning at high level</h2>
+                        <h2 class="ion-text-wrap" *ngIf="item.loggedValue == 3 || item.loggedValue == 4 || item.loggedValue == 5">
+                          Awake, or somewhat foggy</h2>
+                        <h2 class="ion-text-wrap" *ngIf="item.loggedValue == 6 || item.loggedValue == 7">
+                          Sleepy, or no longer fighting sleep</h2>
+                        <p>
+                          <ion-icon name="pin" slot="start"></ion-icon>
+                          {{item.loggedLocation}}                          
+                        </p>                        
+                        <p class="ion-text-wrap">
+                            <ion-icon name="time" slot="start"></ion-icon>
+                            {{item.hourString()}}
+                          </p>                      
+                      </ion-label>                      
+                    </ion-item>   
+                  </ion-item-sliding>
+                </ion-list>                                   
+              </ion-card-content>
             </ion-card>
         </ion-slide>
     </ion-slides>

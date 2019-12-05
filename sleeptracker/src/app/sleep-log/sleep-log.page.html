@@ -1,11 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>HOW DO YOU FELL TODAY?</ion-title>
+    <ion-title>How do you feel today?</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
+      <ion-item>
+          <ion-label>Your location: </ion-label>
+          <ion-input required [(ngModel)]="loggedLocation" type="text" placeholder="Type your location">
+
+          </ion-input>
+        </ion-item>
     <ion-radio-group>
       <ion-item *ngFor = "let item of sleepScaleValues" (ionSelect)="radioSelect($event)">
         <ion-label class="ion-text-wrap">{{item.item}}</ion-label>
