@@ -2,39 +2,55 @@
   <ion-toolbar>
     <ion-title>
       <div class="ion-text-center">
-        BetterSleep &reg;
+        Personal Information
+        <!-- BetterSleep &reg; -->
       </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-  <div class="ion-text-center">
-    <p>Personal Information</p>
-  </div>
-  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+  <ion-list lines="full" class="ion-no-margin ion-no-padding" *ngIf="!hasAcc">
     <ion-item>
-      <ion-label>First Name: </ion-label>
-      <ion-input required type="text"></ion-input>
+      <ion-label>First Name:</ion-label>
+      <ion-input required type="text" [(ngModel)]="fName"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Last Name: </ion-label>
-      <ion-input required type="text"></ion-input>
+      <ion-label>Last Name:</ion-label>
+      <ion-input required type="text" [(ngModel)]="lName"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Date Of Birth</ion-label>
-      <ion-datetime value="1950-01-01" placeholder="Select Date"></ion-datetime>
+      <ion-datetime value="1950-01-01" placeholder="Select Date" [(ngModel)]="DOB"></ion-datetime>
     </ion-item>
     <ion-item>
-        <ion-label>Email: </ion-label>
-        <ion-input required type="email"></ion-input>
+      <ion-label>Email: </ion-label>
+      <ion-input required type="email" [(ngModel)]="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Username: </ion-label>
+      <ion-input required type="text" [(ngModel)]="userName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password: </ion-label>
+      <ion-input required type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
   </ion-list>
- 
+  <ion-list lines="full" class="ion-no-margin ion-no-padding" *ngIf="hasAcc && !loggedIn">
+    <ion-item>
+      <ion-label>Username: </ion-label>
+      <ion-input required type="text">{{userName}}</ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password: </ion-label>
+      <ion-input required type="password">{{password}}</ion-input>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
 <ion-footer>
-    <div class="ion-padding">
-        <ion-button expand="block" type="submit" class="ion-no-margin" href="/main" (click)="presentAlertConfirm()">Submit</ion-button>
-      </div>
+  <div class="ion-padding">
+    <ion-button expand="block" type="submit" class="ion-no-margin" (click)="presentAlertConfirm()">Submit
+    </ion-button>
+  </div>
 </ion-footer>

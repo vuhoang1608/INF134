@@ -7,7 +7,7 @@ import { MainPage } from './main.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'main',
     component: MainPage,
     children:
       [
@@ -27,7 +27,7 @@ const routes: Routes = [
             [
               {
                 path: '',
-                loadChildren: () => import('../sleep-data/sleep-data.module').then( m => m.SleepDataPageModule)
+                loadChildren: () => import('../sleep-log/sleep-log.module').then( m => m.SleepLogPageModule)
               }
             ]
         },
@@ -37,15 +37,15 @@ const routes: Routes = [
             [
               {
                 path: '',
-                loadChildren: () => import('../sleep-log/sleep-log.module').then( m => m.SleepLogPageModule)
+                loadChildren: () => import('../sleep-data/sleep-data.module').then( m => m.SleepDataPageModule)
               }
             ]
         }
       ]
   },
   {
-    path: 'main',
-    redirectTo: '/main/sleep-track',
+    path: '',
+    redirectTo: 'main/sleep-track',
     pathMatch: 'full'
   }
 ];

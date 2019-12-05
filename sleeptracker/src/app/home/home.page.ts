@@ -5,6 +5,7 @@ import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 import { NavController,AlertController } from '@ionic/angular';
 import { HomePageModule } from './home.module';
+import { Storage } from '@ionic/storage';
 
 @Component({
 	selector: 'app-home',
@@ -13,10 +14,47 @@ import { HomePageModule } from './home.module';
 })
 
 export class HomePage {
-	constructor(public sleepService: SleepService, public navCtrl: NavController, public alertController: AlertController) {}
+	hasAcc:boolean = false;
+	loggedIn:boolean = false;
+	fName:string = "";
+	lName:string = "";
+	email:string = "";
+	DOB:Date;
+	userName:string = "";
+	password:string = "";
+
+	constructor(public sleepService: SleepService, 
+				public navCtrl: NavController, 
+				public alertController: AlertController,
+				public storage: Storage) 
+	{
+
+		
+	}
+
+	createAccount()
+	{
+		this.storage.set("fName", this.fName);
+		this.storage.set("lName", this.lName);
+		this.storage.set("email", this.email);
+		this.storage.set("DOB", this.DOB);
+		this.storage.set("userName", this.userName);
+		this.storage.set("password", this.password);
+		this.storage.set("hasAcc", true);
+		this.storage.set("loggedIn", true);
+	}
 
 	ngOnInit() {
-		//console.log(this.allSleepData);
+		this.storage.get("loggedIn").then((check) => {
+			if(check) {
+				this.loggedIn = check;
+				this.navCtrl.navigateForward('/main');
+			}
+		});
+
+		this.storage.get("hasAcc").then((result) => {
+			this.hasAcc = result;
+		});
 	}
 
 	async presentAlertConfirm() {
@@ -33,6 +71,19 @@ export class HomePage {
 			}, {
 			  text: 'Yes',
 			  handler: () => {
+				this.createAccount();
+				if(this.hasAcc && !this.loggedIn)
+				{
+					tempUsr:String;
+					tempPass:String
+					this.storage.get("userName").then((usr) => {
+						this.hasAcc = usr;
+					});
+
+					this.storage.get("password").then((pass) => {
+						this.hasAcc = pass;
+					});
+				}
 				this.navCtrl.navigateForward('/main');
 				console.log('Confirm Okay');
 			  }
