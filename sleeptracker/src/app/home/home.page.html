@@ -35,22 +35,28 @@
       <ion-label>Password: </ion-label>
       <ion-input required type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
+    <ion-footer>
+      <div class="ion-padding">
+        <ion-button expand="block" type="submit" class="ion-no-margin" (click)="presentAlertConfirm()">Submit
+        </ion-button>
+      </div>
+    </ion-footer>
   </ion-list>
   <ion-list lines="full" class="ion-no-margin ion-no-padding" *ngIf="hasAcc && !loggedIn">
     <ion-item>
       <ion-label>Username: </ion-label>
-      <ion-input required type="text">{{userName}}</ion-input>
+      <ion-input required type="text" [(ngModel)]="userName"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Password: </ion-label>
-      <ion-input required type="password">{{password}}</ion-input>
+      <ion-input required type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
+    <ion-footer >
+      <div class="ion-padding">
+        <ion-button expand="block" type="submit" class="ion-no-margin" (click)="doLogin()">Log In
+        </ion-button>
+      </div>
+    </ion-footer>
   </ion-list>
 
 </ion-content>
-<ion-footer>
-  <div class="ion-padding">
-    <ion-button expand="block" type="submit" class="ion-no-margin" (click)="presentAlertConfirm()">Submit
-    </ion-button>
-  </div>
-</ion-footer>

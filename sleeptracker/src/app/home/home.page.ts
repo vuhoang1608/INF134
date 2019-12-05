@@ -28,23 +28,40 @@ export class HomePage {
 				public alertController: AlertController,
 				public storage: Storage) 
 	{
+		this.storage.get('has_account').then((rs) => {
+			if(rs)
+			{
+				this.hasAcc = rs;
+			}
+		});
 
-		
+		this.storage.get('loggedI').then((rs) => {
+			if(rs)
+			{
+				this.loggedIn = rs;
+			}
+		});
 	}
 
 	createAccount()
 	{
-		this.storage.set("fName", this.fName);
-		this.storage.set("lName", this.lName);
+		this.storage.set("firstname", this.fName);
+		this.storage.set("lastname", this.lName);
 		this.storage.set("email", this.email);
 		this.storage.set("DOB", this.DOB);
-		this.storage.set("userName", this.userName);
+		this.storage.set("username", this.userName);
 		this.storage.set("password", this.password);
-		this.storage.set("hasAcc", true);
+		this.storage.set("has_account", true);
 		this.storage.set("loggedIn", true);
+		this.navCtrl.navigateForward('/main');
 	}
 
 	ngOnInit() {
+		this.fName = "";
+		this.lName = "";
+		this.email = "";
+		this.userName = "";
+		this.password = "";
 		this.storage.get("loggedIn").then((check) => {
 			if(check) {
 				this.loggedIn = check;
@@ -52,7 +69,7 @@ export class HomePage {
 			}
 		});
 
-		this.storage.get("hasAcc").then((result) => {
+		this.storage.get("has_account").then((result) => {
 			this.hasAcc = result;
 		});
 	}
@@ -72,19 +89,6 @@ export class HomePage {
 			  text: 'Yes',
 			  handler: () => {
 				this.createAccount();
-				if(this.hasAcc && !this.loggedIn)
-				{
-					tempUsr:String;
-					tempPass:String
-					this.storage.get("userName").then((usr) => {
-						this.hasAcc = usr;
-					});
-
-					this.storage.get("password").then((pass) => {
-						this.hasAcc = pass;
-					});
-				}
-				this.navCtrl.navigateForward('/main');
 				console.log('Confirm Okay');
 			  }
 			}
@@ -92,7 +96,34 @@ export class HomePage {
 		});
 	
 		await alert.present();
+	}
+
+	async presentWarningUserPass() {
+		const alert = await this.alertController.create({
+		  header: 'Alert',
+		  message: 'Incorrect Username/Password.',
+		  buttons: ['OK']
+		});
+	
+		await alert.present();
 	  }
+
+	doLogin()
+	{
+		let tempUsr:String = "";
+		let tempPass:String = "";
+		Promise.all([this.storage.get("username"), this.storage.get("password")]).then(values => {
+			if(values[0] === this.userName && values[1] === this.password)
+			{
+				this.userName = "";
+				this.password = "";
+				this.navCtrl.navigateForward('/main');
+			}			
+			else
+				this.presentWarningUserPass();
+
+		});
+	}
 
 	// /* Ionic doesn't allow bindings to static variables, so this getter can be used instead. */
 	// get allSleepData() {

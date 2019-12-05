@@ -8,11 +8,12 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./sleep-track.page.scss'],
 })
 export class SleepTrackPage implements OnInit {
-
-  constructor(private storage:Storage, public navCtrl: NavController) { }
+  lblUsername:String;
+  constructor(private storage:Storage, public navCtrl: NavController) {  }
 
   ngOnInit() {
-    this.storage.get("fName").then((fName) => {
+    this.storage.get("firstname").then((fName) => {
+      this.lblUsername = fName;
       console.log(fName);
     });
   }

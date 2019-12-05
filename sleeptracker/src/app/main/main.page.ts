@@ -15,7 +15,9 @@ import { RouterModule, Routes } from '@angular/router';
 export class MainPage implements OnInit {
   btnName:string = "Click me";
 
-  constructor(public sleepService: SleepService, public navCtrl: NavController) {}
+  constructor(public sleepService: SleepService, public navCtrl: NavController) {
+	  
+  }
 
   goToPage() 
   {
