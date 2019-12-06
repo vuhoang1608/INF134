@@ -22,7 +22,7 @@ const routes: Routes = [
             ]
         },
         {
-          path: 'sleep-log',
+          path: 'sleep-data',
           children:
             [
               {
@@ -32,7 +32,7 @@ const routes: Routes = [
             ]
         },
         {
-          path: 'sleep-data',
+          path: 'sleep-log',
           children:
             [
               {

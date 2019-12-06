@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { NavController } from '@ionic/angular';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
+import { SleepService } from '../services/sleep.service';
 
 @Component({
   selector: 'app-sleep-track',
@@ -11,27 +12,22 @@ import { OvernightSleepData } from '../data/overnight-sleep-data';
 
 export class SleepTrackPage implements OnInit {
   lblUsername: String;
-  startTime: Date;
+  startTime: Date;  
   endTime: Date;
   arrSleepData: Array<OvernightSleepData>;
   sleepData: OvernightSleepData;
 
-  constructor(private storage: Storage, public navCtrl: NavController) { }
+  constructor(private storage: Storage, public navCtrl: NavController,
+                public sleepService: SleepService) { }
 
   ngOnInit() {
     this.storage.get("firstname").then((fName) => {
       this.lblUsername = fName;
-      console.log(fName);
-    });
+    });        
   }
-<<<<<<< HEAD
-  
-  logOut()
-  {
-=======
 
-  logSleep() {
-    this.sleepData = new OvernightSleepData(this.startTime, this.endTime);
+  logSleep() {        
+    this.sleepData = new OvernightSleepData(new Date(this.startTime), new Date(this.endTime));
     this.storage.get("arrSleepData").then((result) => {
       this.arrSleepData = result;
       if (result === null) 
@@ -40,11 +36,11 @@ export class SleepTrackPage implements OnInit {
       }
       this.arrSleepData.push(this.sleepData);
       this.storage.set('arrSleepData', this.arrSleepData);
-    });
+           
+    });    
   }
 
   logOut() {
->>>>>>> dc5bb7ac1c6b14299e434731cba1bb5564c0f748
     this.storage.set("loggedIn", false).then(() => {
       this.navCtrl.navigateForward('/home');
     });

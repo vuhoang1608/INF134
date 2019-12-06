@@ -4,24 +4,18 @@
 </ion-header>
 
 <ion-content>
-<<<<<<< HEAD
-  <ion-button expand="block" type="submit" class="ion-no-margin" (click)="startRecord()">Start
-    </ion-button>
-    
-=======
   <ion-list>
     <ion-item>
       <ion-label>Start Time</ion-label>
-      <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="04:00Z" [(ngModel)]="startTime" placeholder="Select Time"></ion-datetime>
+      <ion-datetime display-format="MMM D, h:mm A" picker-format="MMM D h:mm A" value="MMM D 04:00Z" [(ngModel)]="startTime" placeholder="Select Time"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>End Time</ion-label>
-      <ion-datetime display-format="h:mm A" picker-format="h:mm A" value="15:00Z" [(ngModel)]="endTime"  placeholder="Select Time"></ion-datetime>
+      <ion-datetime display-format="MMM D, h:mm A" picker-format="MMM D h:mm A" value="MMM D 15:00Z" [(ngModel)]="endTime"  placeholder="Select Time"></ion-datetime>
     </ion-item>
   </ion-list>
   <!-- <ion-button expand="block" type="submit" class="ion-no-margin" (click)="logOut()">Log Out
   </ion-button> -->
->>>>>>> dc5bb7ac1c6b14299e434731cba1bb5564c0f748
 </ion-content>
 <ion-footer>
   <ion-button expand="block" type="submit" class="ion-no-margin" (click)="logSleep()">Submit</ion-button>

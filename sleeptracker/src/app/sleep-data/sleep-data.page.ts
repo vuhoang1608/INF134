@@ -9,6 +9,7 @@ import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-sleep-data',
@@ -19,13 +20,29 @@ import { AlertController } from '@ionic/angular';
 export class SleepDataPage implements OnInit {
   sleepinessData:StanfordSleepinessData[];
   overnightSleepData:OvernightSleepData[];
-  searchbar:any;
-  items:Array<any>;
+  nightsleepData:OvernightSleepData;
+  daysleepData:StanfordSleepinessData;
+
   
   constructor(public sleepService: SleepService,public toastController: ToastController, 
-              public alertController: AlertController) {
+              public alertController: AlertController,private storage: Storage) {
+    //Initialize overnightSleepData    
+    this.storage.get("arrSleepData").then((result) => {      
+      result.forEach((element) => {        
+        this.nightsleepData = new OvernightSleepData(element.sleepStart, element.sleepEnd);
+        sleepService.logOvernightData(this.nightsleepData);
+      });
+    this.overnightSleepData = SleepService.AllOvernightData;      
+    });    
+    //Initialize sleepinessData      
+    this.storage.get("arrSleepinessData").then((result) => {           
+      result.forEach((element) => {        
+        this.daysleepData = new StanfordSleepinessData(element.loggedValue,element.loggedLocation,
+                                element.loggedAt);
+        sleepService.logSleepinessData(this.daysleepData);
+      });
     this.sleepinessData = SleepService.AllSleepinessData;
-    this.overnightSleepData = SleepService.AllOvernightData;   
+    });    
    }
   
   ngOnInit() {    

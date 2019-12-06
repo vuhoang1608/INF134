@@ -26,8 +26,7 @@ export class MainPage implements OnInit {
     console.log("button click");
   }
 	ngOnInit() {
-		this.btnName = "Click me";
-		console.log(this.allSleepData);
+		this.btnName = "Click me";		
 	}
 
 	/* Ionic doesn't allow bindings to static variables, so this getter can be used instead. */

@@ -18,6 +18,7 @@ export class SleepLogPage implements OnInit {
   sleepData:StanfordSleepinessData;
   loggedLocation:String;
   lblUsername:String;
+  arrSleepinessData:Array<StanfordSleepinessData>;
   constructor(public sleepService: SleepService, public navCtrl: NavController,
                   public toastController: ToastController, public alertController: AlertController,
                     public storage:Storage) {}
@@ -37,8 +38,16 @@ export class SleepLogPage implements OnInit {
   submit(){
     if(this.loggedValue != -1 && this.loggedLocation != ""){
       this.sleepData = new StanfordSleepinessData(this.loggedValue, this.loggedLocation, new Date(Date.now()));
-      this.sleepService.logSleepinessData(this.sleepData);
-      console.log(SleepService.AllSleepData);
+      this.storage.get("arrSleepinessData").then((result) => {
+        this.arrSleepinessData = result;
+        if (result === null) 
+        {
+          this.arrSleepinessData = new Array<StanfordSleepinessData>();
+        }
+        this.arrSleepinessData.push(this.sleepData);
+        this.storage.set("arrSleepinessData", this.arrSleepinessData);
+        console.log(result);
+      });
 
       //Show notification
       this.toastController.create({
