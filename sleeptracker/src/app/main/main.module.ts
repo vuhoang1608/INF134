@@ -27,7 +27,7 @@ const routes: Routes = [
             [
               {
                 path: '',
-                loadChildren: () => import('../sleep-log/sleep-log.module').then( m => m.SleepLogPageModule)
+                loadChildren: () => import('../sleep-data/sleep-data.module').then( m => m.SleepDataPageModule)
               }
             ]
         },
@@ -37,7 +37,7 @@ const routes: Routes = [
             [
               {
                 path: '',
-                loadChildren: () => import('../sleep-data/sleep-data.module').then( m => m.SleepDataPageModule)
+                loadChildren: () => import('../sleep-log/sleep-log.module').then( m => m.SleepLogPageModule)
               }
             ]
         }
