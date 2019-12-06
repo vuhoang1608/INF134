@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { SleepService } from '../services/sleep.service';
 import { ToastController } from '@ionic/angular';
+import { getLocaleDateTimeFormat } from '@angular/common';
 
 @Component({
   selector: 'app-sleep-track',
@@ -40,19 +41,17 @@ export class SleepTrackPage implements OnInit {
       this.storage.set('arrSleepData', this.arrSleepData);
            
     });
+
     //Show notification
     this.toastController.create({
       message: 'Overnight Sleep data logged!',
       duration: 1000
     }).then((toast) => {
+      
       toast.present();
+      
   });    
   }
 
-  logOut() {
-    this.storage.set("loggedIn", false).then(() => {
-      this.navCtrl.navigateForward('/home');
-    });
-  }
-
+ 
 }

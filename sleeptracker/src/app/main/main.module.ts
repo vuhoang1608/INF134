@@ -40,6 +40,16 @@ const routes: Routes = [
                 loadChildren: () => import('../sleep-log/sleep-log.module').then( m => m.SleepLogPageModule)
               }
             ]
+        },
+        {
+          path: 'profile',
+          children:
+            [
+              {
+                path: '',
+                loadChildren: () => import('../profile/profile.module').then( m => m.ProfilePageModule)
+              }
+            ]
         }
       ]
   },

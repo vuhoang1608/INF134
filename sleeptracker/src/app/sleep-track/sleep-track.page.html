@@ -1,21 +1,26 @@
 <ion-header>
-  <h1>Hello, <ion-label>{{lblUsername}}</ion-label></h1>
-  Start tracking your sleep time by input your sleeping time below.
+  <ion-toolbar>
+    <ion-title>
+        <h1>Hello, <ion-label>{{lblUsername}}</ion-label>
+        </h1>
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
+    <ion-item> Manually input you sleeping time.</ion-item>
     <ion-item>
       <ion-label>Start Time</ion-label>
-      <ion-datetime display-format="MMM D, h:mm A" picker-format="MMM D h:mm A" value="MMM D 04:00Z" [(ngModel)]="startTime" placeholder="Select Time"></ion-datetime>
+      <ion-datetime display-format="MMM D, h:mm A" picker-format="MMM D h:mm A" value="MMM D 04:00Z"
+        [(ngModel)]="startTime" placeholder="Select Time" minuteValues="0,10,20,30,40,50"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>End Time</ion-label>
-      <ion-datetime display-format="MMM D, h:mm A" picker-format="MMM D h:mm A" value="MMM D 15:00Z" [(ngModel)]="endTime"  placeholder="Select Time"></ion-datetime>
+      <ion-datetime display-format="MMM D, h:mm A" picker-format="MMM D h:mm A" value="MMM D 15:00Z"
+        [(ngModel)]="endTime" placeholder="Select Time" min="{{startTime}}" minuteValues="0,10,20,30,40,50"></ion-datetime>
     </ion-item>
   </ion-list>
-  <!-- <ion-button expand="block" type="submit" class="ion-no-margin" (click)="logOut()">Log Out
-  </ion-button> -->
 </ion-content>
 <ion-footer>
   <ion-button expand="block" type="submit" class="ion-no-margin" (click)="logSleep()">Submit</ion-button>

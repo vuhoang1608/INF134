@@ -2,14 +2,18 @@
   <ion-toolbar>
     <ion-title>
       <div class="ion-text-center">
-        Personal Information
-        <!-- BetterSleep &reg; -->
+        BetterSleep &reg;
       </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
+  <ion-item>
+    <div class="ion-text-center">
+      <h2 >Personal Information</h2>
+    </div>
+  </ion-item>
   <ion-list lines="full" class="ion-no-margin ion-no-padding" *ngIf="!hasAcc">
     <ion-item>
       <ion-label>First Name:</ion-label>
@@ -51,7 +55,7 @@
       <ion-label>Password: </ion-label>
       <ion-input required type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
-    <ion-footer >
+    <ion-footer>
       <div class="ion-padding">
         <ion-button expand="block" type="submit" class="ion-no-margin" (click)="doLogin()">Log In
         </ion-button>
