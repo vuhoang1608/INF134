@@ -12,7 +12,7 @@
             <img src='./assets/icon/sleep-log.jpg'>
             <ion-card-header>Overnight sleep data</ion-card-header>
             <ion-card-content>              
-                <ion-item *ngFor = "let item of overnightSleepData">
+                <ion-item *ngFor = "let item of overnightSleepData" overnightSleepData = "[(overnightSleepData)]">
                   <ion-label>
                     <h2>{{item.summaryString()}}</h2>
                     <p class="ion-text-wrap">

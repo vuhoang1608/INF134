@@ -10,6 +10,8 @@ import { StanfordSleepinessData } from '../data/stanford-sleepiness-data';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { identifierModuleUrl } from '@angular/compiler';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-sleep-data',
@@ -30,7 +32,7 @@ export class SleepDataPage implements OnInit {
     this.storage.get("arrSleepData").then((result) => {      
       result.forEach((element) => {        
         this.nightsleepData = new OvernightSleepData(element.sleepStart, element.sleepEnd);
-        sleepService.logOvernightData(this.nightsleepData);
+        this.sleepService.logOvernightData(this.nightsleepData);
       });
     this.overnightSleepData = SleepService.AllOvernightData;      
     });    
@@ -39,14 +41,16 @@ export class SleepDataPage implements OnInit {
       result.forEach((element) => {        
         this.daysleepData = new StanfordSleepinessData(element.loggedValue,element.loggedLocation,
                                 element.loggedAt);
-        sleepService.logSleepinessData(this.daysleepData);
+        this.sleepService.logSleepinessData(this.daysleepData);
       });
     this.sleepinessData = SleepService.AllSleepinessData;
     });    
-   }
+   }   
   
-  ngOnInit() {    
+  ngOnInit() {
+    
   }
+
   async deleteOvernightSleepData(item){
     const alert = await this.alertController.create({
       header: 'Delete this data.',        
@@ -63,18 +67,33 @@ export class SleepDataPage implements OnInit {
           }
         }, {
           text: 'Ok',
-          handler: (data) => {
-            console.log(item);
-            this.overnightSleepData = this.overnightSleepData.filter((item) =>{
-              return !this.overnightSleepData.includes(item);
-            });                        
+          handler: (data) => {            
+            //remove item from overnightSLeepData
+            let index:number = this.overnightSleepData.indexOf(item);            
+            this.overnightSleepData.splice(index,1);
+
+            //remove item from storage            
+            this.storage.set("arrSleepData",this.overnightSleepData);
+                   
+            this.storage.get("arrSleepData").then((result) => {                          
+              console.log(result);
+            }); 
+
+            //Show notification
+            this.toastController.create({
+              message: 'Data was deleted!',
+              duration: 1000
+            }).then((toast) => {
+              toast.present();
+            });
+
+            return this.overnightSleepData;                        
           }
         }
       ]
       });
-      await alert.present();
-    }
-  
+      await alert.present();     
+    }      
 
   async deleteSleepLogData(item){
     const alert = await this.alertController.create({
@@ -91,12 +110,32 @@ export class SleepDataPage implements OnInit {
           }
         }, {
           text: 'Ok',
-          handler: (data) => {
-            console.log(item);                        
+          handler: (data) => {            
+            let index:number = this.sleepinessData.indexOf(item);            
+            this.sleepinessData.splice(index,1);
+
+            //remove item from storage            
+            this.storage.set("arrSleepinessData",this.sleepinessData);
+                   
+            this.storage.get("arrSleepinessData").then((result) => {                          
+              console.log(result);
+            });
+            
+            //Show notification
+            this.toastController.create({
+              message: 'Data was deleted!',
+              duration: 1000
+            }).then((toast) => {
+              toast.present();
+            });
+            
+            return this.sleepinessData;                        
           }
         }
       ]
       });
       await alert.present();
+
+      
   }
 }

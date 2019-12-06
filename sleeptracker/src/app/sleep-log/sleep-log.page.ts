@@ -38,6 +38,7 @@ export class SleepLogPage implements OnInit {
   submit(){
     if(this.loggedValue != -1 && this.loggedLocation != ""){
       this.sleepData = new StanfordSleepinessData(this.loggedValue, this.loggedLocation, new Date(Date.now()));
+      this.sleepService.logSleepinessData(this.sleepData);
       this.storage.get("arrSleepinessData").then((result) => {
         this.arrSleepinessData = result;
         if (result === null) 
@@ -45,8 +46,7 @@ export class SleepLogPage implements OnInit {
           this.arrSleepinessData = new Array<StanfordSleepinessData>();
         }
         this.arrSleepinessData.push(this.sleepData);
-        this.storage.set("arrSleepinessData", this.arrSleepinessData);
-        console.log(result);
+        this.storage.set("arrSleepinessData", this.arrSleepinessData);        
       });
 
       //Show notification

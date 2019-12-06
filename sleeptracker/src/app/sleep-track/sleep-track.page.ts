@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 import { NavController } from '@ionic/angular';
 import { OvernightSleepData } from '../data/overnight-sleep-data';
 import { SleepService } from '../services/sleep.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sleep-track',
@@ -18,7 +19,7 @@ export class SleepTrackPage implements OnInit {
   sleepData: OvernightSleepData;
 
   constructor(private storage: Storage, public navCtrl: NavController,
-                public sleepService: SleepService) { }
+                public sleepService: SleepService, public toastController: ToastController) { }
 
   ngOnInit() {
     this.storage.get("firstname").then((fName) => {
@@ -28,6 +29,7 @@ export class SleepTrackPage implements OnInit {
 
   logSleep() {        
     this.sleepData = new OvernightSleepData(new Date(this.startTime), new Date(this.endTime));
+    this.sleepService.logOvernightData(this.sleepData);
     this.storage.get("arrSleepData").then((result) => {
       this.arrSleepData = result;
       if (result === null) 
@@ -37,7 +39,14 @@ export class SleepTrackPage implements OnInit {
       this.arrSleepData.push(this.sleepData);
       this.storage.set('arrSleepData', this.arrSleepData);
            
-    });    
+    });
+    //Show notification
+    this.toastController.create({
+      message: 'Overnight Sleep data logged!',
+      duration: 1000
+    }).then((toast) => {
+      toast.present();
+  });    
   }
 
   logOut() {
