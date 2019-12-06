@@ -52,6 +52,7 @@ export class SleepDataPage implements OnInit {
   }
 
   async deleteOvernightSleepData(item){
+    let undo:boolean = false;
     const alert = await this.alertController.create({
       header: 'Delete this data.',        
       message: "Are you sure?",
@@ -72,19 +73,19 @@ export class SleepDataPage implements OnInit {
             let index:number = this.overnightSleepData.indexOf(item);            
             this.overnightSleepData.splice(index,1);
 
-            //remove item from storage            
-            this.storage.set("arrSleepData",this.overnightSleepData);
-                   
-            this.storage.get("arrSleepData").then((result) => {                          
-              console.log(result);
-            }); 
-
             //Show notification
             this.toastController.create({
               message: 'Data was deleted!',
-              duration: 1000
+              duration: 5000,
+              showCloseButton: true,
+              closeButtonText: "Undo"
             }).then((toast) => {
               toast.present();
+              toast.onDidDismiss().then((data) => {
+                this.sleepService.logOvernightData(item);
+                undo = true; //set undo to true to avoid delete item from storage
+                console.log("Undo button was hitted");
+              })              
             });
 
             return this.overnightSleepData;                        
@@ -92,10 +93,16 @@ export class SleepDataPage implements OnInit {
         }
       ]
       });
-      await alert.present();     
+      await alert.present();
+
+      //remove item from storage if undo is false
+      if(!undo){            
+        this.storage.set("arrSleepData",this.overnightSleepData);
+      }     
     }      
 
   async deleteSleepLogData(item){
+    let undo:boolean = false;
     const alert = await this.alertController.create({
       header: 'Delete this data.',        
       message: "Are you sure?",
@@ -110,23 +117,24 @@ export class SleepDataPage implements OnInit {
           }
         }, {
           text: 'Ok',
-          handler: (data) => {            
+          handler: (data) => {   
+            //remove item from sleepinessData         
             let index:number = this.sleepinessData.indexOf(item);            
             this.sleepinessData.splice(index,1);
-
-            //remove item from storage            
-            this.storage.set("arrSleepinessData",this.sleepinessData);
-                   
-            this.storage.get("arrSleepinessData").then((result) => {                          
-              console.log(result);
-            });
             
             //Show notification
             this.toastController.create({
               message: 'Data was deleted!',
-              duration: 1000
+              duration: 5000,
+              showCloseButton: true,
+              closeButtonText: "Undo"
             }).then((toast) => {
               toast.present();
+              toast.onDidDismiss().then((data) => {
+                this.sleepService.logSleepinessData(item);
+                undo = true; //set undo to true to avoid delete item from storage
+                console.log("Undo button was hitted");
+              })   
             });
             
             return this.sleepinessData;                        
@@ -136,6 +144,10 @@ export class SleepDataPage implements OnInit {
       });
       await alert.present();
 
+      //remove item from storage if undo is false
+      if(!undo){            
+        this.storage.set("arrSleepinessData",this.sleepinessData);
+      }  
       
   }
 }
