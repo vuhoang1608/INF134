@@ -17,7 +17,7 @@ export class SleepTrackPage implements OnInit {
       console.log(fName);
     });
   }
-
+  
   logOut()
   {
     this.storage.set("loggedIn", false).then(() => {

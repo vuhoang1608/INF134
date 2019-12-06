@@ -5,6 +5,7 @@ import {StanfordSleepinessData} from '../data/stanford-sleepiness-data';
 import { NavController } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-sleep-log',
@@ -16,8 +17,10 @@ export class SleepLogPage implements OnInit {
   sleepScaleValues:any[] = [];
   sleepData:StanfordSleepinessData;
   loggedLocation:String;
+  lblUsername:String;
   constructor(public sleepService: SleepService, public navCtrl: NavController,
-                  public toastController: ToastController, public alertController: AlertController) {}
+                  public toastController: ToastController, public alertController: AlertController,
+                    public storage:Storage) {}
 
   ngOnInit() {
     //this.sleepScaleValues = StanfordSleepinessData.ScaleValues.slice(1,7);
@@ -27,6 +30,9 @@ export class SleepLogPage implements OnInit {
     }    
     this.loggedValue = -1;
     this.loggedLocation = "";
+    this.storage.get("firstname").then((fName) => {
+    this.lblUsername = fName;
+    });
   }
   submit(){
     if(this.loggedValue != -1 && this.loggedLocation != ""){

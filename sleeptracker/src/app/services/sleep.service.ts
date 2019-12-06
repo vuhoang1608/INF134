@@ -22,7 +22,8 @@ export class SleepService {
   private addDefaultData() {
     this.logOvernightData(new OvernightSleepData(new Date('November 17, 2019 01:03:00'), new Date('November 17, 2019 09:25:00')));
     this.logSleepinessData(new StanfordSleepinessData(4, "Office", new Date('November 17, 2019 14:38:00')));
-    this.logOvernightData(new OvernightSleepData(new Date('November 18, 2019 23:11:00'), new Date('November 18, 2019 08:03:00')));
+    this.logOvernightData(new OvernightSleepData(new Date('November 18, 2019 23:11:00'), new Date('November 19, 2019 08:03:00')));
+    this.logOvernightData(new OvernightSleepData(new Date('November 19, 2019 23:11:00'), new Date('November 20, 2019 06:30:00')));
   }
 
   public logOvernightData(sleepData:OvernightSleepData) {
