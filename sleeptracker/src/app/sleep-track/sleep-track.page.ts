@@ -43,7 +43,7 @@ export class SleepTrackPage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.logSleep();
-            this.startTime.setDate(null);
+            //this.startTime.setDate(null);
           }
         }
       ]

@@ -52,7 +52,6 @@ export class SleepDataPage implements OnInit {
   }
 
   async deleteOvernightSleepData(item){
-    let undo:boolean = false;
     const alert = await this.alertController.create({
       header: 'Delete this data.',        
       message: "Are you sure?",
@@ -80,29 +79,40 @@ export class SleepDataPage implements OnInit {
               showCloseButton: true,
               closeButtonText: "Undo"
             }).then((toast) => {
-              toast.present();
+              let closedByTimeout = false;
+              let timeoutHandle = setTimeout(() => { closedByTimeout = true; toast.dismiss(); }, 5000);
               toast.onDidDismiss().then((data) => {
-                this.sleepService.logOvernightData(item);
-                undo = true; //set undo to true to avoid delete item from storage
-                console.log("Undo button was hitted");
-              })              
+                if(closedByTimeout){
+                  console.log("Closed by time out");
+                  //remove from storage
+                  this.storage.set("arrSleepData",this.overnightSleepData);
+                  clearTimeout(timeoutHandle);
+                }
+                else{
+                  //add item back to the list
+                  this.sleepService.logOvernightData(item);
+                  console.log("Undo button was hitted");
+                  this.toastController.create({
+                    message: 'Data was restored!',
+                    duration: 3000,
+                    showCloseButton: true,
+                    closeButtonText: "OK"
+                  }).then((toast) => {
+                    toast.present();
+                  });
+                }
+              })
+              toast.present();              
             });
-
             return this.overnightSleepData;                        
           }
         }
       ]
       });
-      await alert.present();
-
-      //remove item from storage if undo is false
-      if(!undo){            
-        this.storage.set("arrSleepData",this.overnightSleepData);
-      }     
+      await alert.present();   
     }      
 
   async deleteSleepLogData(item){
-    let undo:boolean = false;
     const alert = await this.alertController.create({
       header: 'Delete this data.',        
       message: "Are you sure?",
@@ -122,19 +132,37 @@ export class SleepDataPage implements OnInit {
             let index:number = this.sleepinessData.indexOf(item);            
             this.sleepinessData.splice(index,1);
             
-            //Show notification
-            this.toastController.create({
+             //Show notification
+             this.toastController.create({
               message: 'Data was deleted!',
               duration: 5000,
               showCloseButton: true,
               closeButtonText: "Undo"
             }).then((toast) => {
-              toast.present();
+              let closedByTimeout = false;
+              let timeoutHandle = setTimeout(() => { closedByTimeout = true; toast.dismiss(); }, 5000);
               toast.onDidDismiss().then((data) => {
-                this.sleepService.logSleepinessData(item);
-                undo = true; //set undo to true to avoid delete item from storage
-                console.log("Undo button was hitted");
-              })   
+                if(closedByTimeout){
+                  console.log("Closed by time out");
+                  //remove from storage
+                  this.storage.set("arrSleepinessData",this.sleepinessData);
+                  clearTimeout(timeoutHandle);
+                }
+                else{
+                  //add item back to the list
+                  this.sleepService.logSleepinessData(item);                  
+                  console.log("Undo button was hitted");
+                  this.toastController.create({
+                    message: 'Data was restored!',
+                    duration: 3000,
+                    showCloseButton: true,
+                    closeButtonText: "OK"
+                  }).then((toast) => {
+                    toast.present();
+                  });
+                }
+              })
+              toast.present();              
             });
             
             return this.sleepinessData;                        
@@ -143,11 +171,5 @@ export class SleepDataPage implements OnInit {
       ]
       });
       await alert.present();
-
-      //remove item from storage if undo is false
-      if(!undo){            
-        this.storage.set("arrSleepinessData",this.sleepinessData);
-      }  
-      
   }
 }
