@@ -32,7 +32,7 @@ N/A
 Since our app is initiative, so we target a large range of users from 15 years old to 65 years old.
 
 7. Did you design your app specifically for iOS or Android, or both?
-We design our app for Android. 
+We design our app for both.
 
 8. How can a person log overnight sleep in your app? Why did you choose to support logging overnight sleep in this way?
 Users select the "Track" tab to log their overnight sleep data. Users can choose the Start time and End time as a wake-up time, then hit "Submit". It only take 3 steps to log overnight sleep data.
@@ -53,6 +53,7 @@ N/A
 Ionic Storage.
 
 14. Did you add any "extra" features, such as other data to log, the ability to edit or delete data, or changes to the styling of the app? If so, what did you add? How do these add to the experience of the app?
-- We implemented a Log in page, after users successfully log in, the app will lead to the Home page that contains 4 tabs (Sleep Track, Sleep Log, Sleep Data, and User Profile).
+- We implemented a Log in page, after users successfully log in, the app will lead to the Home page that contains 4 tabs (Sleep Track, Sleep Log, Sleep Data, and User Profile). Users can log out when they finish their sections or they can stay logged in.
 - In Sleep Data, we added the ability to delete the logged data. After data deleted, users have 5 seconds to undo the delete.
-- We added the ability to log in/out in order to preserve the information security. We also implemented the profile page where user information is displayed.
+- We also implemented the profile page where user information is displayed.
+**Note: Using the app on phone will give the best experience.
