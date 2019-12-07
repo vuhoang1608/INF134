@@ -33,7 +33,7 @@ export class ProfilePage implements OnInit {
   async presentAlertConfirm() {
 		const alert = await this.alertController.create({
 		  header: 'Confirm',
-		  message: 'Are you sure you want to log out ?',
+		  message: 'Are you sure you want to exit ?',
 		  buttons: [
 			{
 			  text: 'No',
