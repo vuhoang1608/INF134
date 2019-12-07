@@ -1,4 +1,4 @@
-Huy Luong
+Huy Luong - hnluong1@uci.edu. - 16558665
 Jonathan Hoang Tran - hoangt5@uci.edu - 20843397
 
 1. How many assignment points do you believe you completed (replace the *'s with your numbers)?
