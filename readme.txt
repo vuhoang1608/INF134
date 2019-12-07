@@ -56,3 +56,4 @@ Ionic Storage.
 - We implemented a Log in page, after users successfully log in, the app will lead to the Home page that contains 4 tabs (Sleep Track, Sleep Log, Sleep Data, and User Profile). Users can log out when they finish their sections or they can stay logged in.
 - In Sleep Data, we added the ability to delete the logged data. After data deleted, users have 5 seconds to undo the delete.
 - We also implemented the profile page where user information is displayed.
+**Note: Using the app on phone will give the best experience.
