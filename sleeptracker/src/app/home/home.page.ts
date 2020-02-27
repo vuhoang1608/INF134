@@ -53,6 +53,9 @@ export class HomePage {
 	}
 
 	ngOnInit() {
+		//Uncomment this to clear the storage
+		//this.storage.clear()
+
 		this.fName = "";
 		this.lName = "";
 		this.email = "";
