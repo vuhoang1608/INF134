@@ -20,6 +20,17 @@
       <ion-datetime display-format="MMM D, h:mm A" picker-format="MMM D h:mm A" value="MMM D 15:00Z"
         [(ngModel)]="endTime" placeholder="Select Time" min="{{startTime}}" minuteValues="0,10,20,30,40,50"></ion-datetime>
     </ion-item>
+    <ion-item>
+      <ion-label>Mood: </ion-label>
+      <ion-select placeholder="Select one">
+        <ion-select-option value="happy">
+          <ion-icon name="happy-outline"></ion-icon>
+        </ion-select-option>
+        <ion-select-option value="sad">
+          <ion-icon name="sad-outline"></ion-icon>
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
   </ion-list>
 </ion-content>
 <ion-footer>

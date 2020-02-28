@@ -8,6 +8,10 @@
 </ion-header>
 
 <ion-content fullscreen>
+  <div>
+    <ion-button href="/connect-device" size="default" fill="outline" type="submit" class="ion-no-margin" (click)="connectDevice()">Connect a device
+    </ion-button>
+  </div>
   <ion-list lines="full" class="ion-no-margin ion-no-padding" *ngIf="!hasAcc">
     <ion-item>
       <ion-label>First Name:</ion-label>      
