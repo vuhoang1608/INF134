@@ -30,6 +30,30 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {}
 
+  async presentAlertSave() {
+		const alert = await this.alertController.create({
+			header: 'Save changes',
+			message: 'All the information is correct?',
+			buttons: [
+				{
+					text: 'No',
+					role: 'cancel',
+					handler: (blah) => {
+						console.log('Confirm Cancel: blah');
+					}
+				}, {
+					text: 'Yes',
+					handler: () => {
+						console.log('Confirm Okay');
+            this.navCtrl.navigateForward('/main');
+					}
+				}
+			]
+		});
+
+		await alert.present();
+	}
+
   async presentAlertConfirm() {
 		const alert = await this.alertController.create({
 		  header: 'Confirm',

@@ -4,13 +4,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen class="ion-padding" >
     <ion-slides pager>
         <ion-slide>
           <ion-card>
-            <img src='./assets/icon/sleep-log.jpg'>
+            <!-- <img src='./assets/icon/sleep-log.jpg'> -->
             <ion-card-header>Overnight sleep data</ion-card-header>
             <ion-card-content>              
+                <img src='./assets/icon/sleepdata.JPG'>
+                <ion-item><h1>Data</h1></ion-item>
                 <ion-item *ngFor = "let item of overnightSleepData" overnightSleepData = "[(overnightSleepData)]">
                   <ion-label>
                     <h2>{{item.summaryString()}}</h2>
@@ -22,15 +24,15 @@
                   <ion-icon name="close-circle" color="primary" (click)="deleteOvernightSleepData(item)"></ion-icon>
                 </ion-item>                         
              </ion-card-content>
-            </ion-card>
+            </ion-card>            
         </ion-slide>
-
         <ion-slide>
             <ion-card>
-                <img src='./assets/icon/sleep-track.jpg'>
               <ion-card-header >Sleepiness data</ion-card-header> 
-              <ion-card-content> 
-                <ion-list>
+              <ion-card-content>
+                <img src='./assets/icon/sleepdata.JPG'>
+                <ion-item><h1>Data</h1></ion-item>
+                <ion-list>                  
                   <ion-item-sliding>
                     <ion-item *ngFor = "let item of sleepinessData">
                       <ion-avatar *ngIf="item.loggedValue == 1 || item.loggedValue == 2">
