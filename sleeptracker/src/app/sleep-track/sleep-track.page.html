@@ -1,8 +1,7 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-        <h1>Hello, <ion-label>{{lblUsername}}</ion-label>
-        </h1>        
+    <ion-title>        
+        <ion-title>Track Overnight sleep</ion-title>                
     </ion-title>    
   </ion-toolbar>
 </ion-header>
@@ -24,10 +23,10 @@
       <ion-label>Mood: </ion-label>
       <ion-select placeholder="Select one">
         <ion-select-option [ngStyle]= "{ textColor: red, backgroundColor: red}"  value="happy">
-          <ion-icon name="happy-outline"></ion-icon>
+          <ion-icon name="happy"></ion-icon>
         </ion-select-option>
         <ion-select-option value="sad">
-          <ion-icon name="sad-outline"></ion-icon>
+          <ion-icon name="sad"></ion-icon>
         </ion-select-option>
       </ion-select>
     </ion-item>

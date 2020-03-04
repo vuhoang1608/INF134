@@ -9,7 +9,8 @@ const routes: Routes = [
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
-  },  {
+  },
+  {
     path: 'start',
     loadChildren: () => import('./start/start.module').then( m => m.StartPageModule)
   },
@@ -20,8 +21,14 @@ const routes: Routes = [
   {
     path: 'message-view',
     loadChildren: () => import('./message-view/message-view.module').then( m => m.MessageViewPageModule)
+  },
+  {
+    path: 'profile',    
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },  {
+    path: 'connect-device',
+    loadChildren: () => import('./connect-device/connect-device.module').then( m => m.ConnectDevicePageModule)
   }
-
 
 ];
 
