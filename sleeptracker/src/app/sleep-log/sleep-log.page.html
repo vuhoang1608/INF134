@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content class="no-scroll">
-  <p>Start logging your sleepiness by typing your location and picking
+  <!-- <p>Start logging your sleepiness by typing your location and picking
     an option!</p>
   <ion-list>
     <ion-item>
@@ -18,9 +18,31 @@
         <ion-radio value="{{item.value}}" checked="{{item.selected}}"></ion-radio>
       </ion-item>
     </ion-radio-group>
-  </ion-list>
+  </ion-list> -->
 
-  
+  <ion-toolbar>
+    <p class="ion-text-center">How are you feeling right now?</p>
+  </ion-toolbar>
+  <ion-item>
+    <ion-input required [(ngModel)]="loggedLocation" type="text" placeholder="Type your location">
+    </ion-input>
+  </ion-item>
+<ion-item>
+  <ion-range min="1" max="7" color="secondary" (ionChange) = "changeSlider()" [(ngModel)]="level" step="1" snaps color="primary">
+    <ion-icon slot="start" size="small" name="cafe"></ion-icon>
+    <ion-icon slot="end" size="small" name="bed"></ion-icon>
+  </ion-range>
+</ion-item>
+<ion-item>
+  <ion-label>
+    <ion-text>
+      <h1>{{level}}</h1>
+    </ion-text>
+    <ion-text *ngFor="let label of sleepiness_label" class="ion-text-wrap">
+      <h2>{{label}}</h2>
+    </ion-text>
+  </ion-label>
+</ion-item>
 </ion-content>
 
 <ion-footer>

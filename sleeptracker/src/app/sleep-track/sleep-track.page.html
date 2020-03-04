@@ -23,7 +23,7 @@
     <ion-item>
       <ion-label>Mood: </ion-label>
       <ion-select placeholder="Select one">
-        <ion-select-option value="happy">
+        <ion-select-option [ngStyle]= "{ textColor: red, backgroundColor: red}"  value="happy">
           <ion-icon name="happy-outline"></ion-icon>
         </ion-select-option>
         <ion-select-option value="sad">
