@@ -6,12 +6,12 @@
   --ion-background-color: #14253f;
   --ion-text-color: rgb(206, 206, 206);
   /** primary **/
-  --ion-color-secondary: #c4c4c4;
-  --ion-color-secondary-rgb: 196,196,196;
-  --ion-color-secondary-contrast: #000000;
-  --ion-color-secondary-contrast-rgb: 0,0,0;
-  --ion-color-secondary-shade: #acacac;
-  --ion-color-secondary-tint: #cacaca;
+  --ion-color-primary: #c4c4c4;
+  --ion-color-primary-rgb: 196,196,196;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0,0,0;
+  --ion-color-primary-shade: #acacac;
+  --ion-color-primary-tint: #cacaca;
 
   /** secondary **/
   --ion-color-secondary: #222d49;
@@ -78,9 +78,6 @@
   --ion-color-light-tint: #f5f6f9;
     
 }
-ion-button {
-  --color:#FFA200;
-}
 
 ion-tab-button{
   --color: rgb(121, 115, 109);
@@ -92,6 +89,8 @@ ion-badge{
   --color: #f4f5f8;
   --padding-end: 1px;
 }
+
+
 
 
 
