@@ -3,10 +3,10 @@
 
 /** Ionic CSS Variables **/
 :root {
-  --ion-background-color: #14253f;
+  --ion-background-color: #1f2a45;
   --ion-text-color: rgb(206, 206, 206);
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #10162b;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -84,7 +84,7 @@ ion-button {
 
 ion-tab-button{
   --color: rgb(121, 115, 109);
-  --color-selected: #0bb8cc;  
+  --color-selected: #ffffff;  
 }
 
 ion-badge{
