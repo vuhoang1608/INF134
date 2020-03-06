@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>        
+  <ion-toolbar color = "secondary">>
+    <ion-title >        
         <ion-title>Track Overnight sleep</ion-title>                
     </ion-title>    
   </ion-toolbar>
@@ -21,14 +21,19 @@
     </ion-item>
     <ion-item>
       <ion-label>Mood: </ion-label>
-      <ion-select placeholder="Select one">
-        <ion-select-option [ngStyle]= "{ textColor: red, backgroundColor: red}"  value="happy">
-          <ion-icon name="happy"></ion-icon>
+      <ion-select [ngStyle]= "{ textColor: red, backgroundColor: red}"  placeholder="Select one">
+        <ion-select-option  value="happy">
+          <ion-icon name="happy">Happy</ion-icon>
         </ion-select-option>
         <ion-select-option value="sad">
-          <ion-icon name="sad"></ion-icon>
+          <ion-icon name="sad">Sad</ion-icon>
+          
         </ion-select-option>
-      </ion-select>
+  
+      <ion-select-option value="sad">
+        <ion-icon name="sad">Not bad</ion-icon>
+      </ion-select-option>
+    </ion-select>
     </ion-item>
   </ion-list>
 </ion-content>

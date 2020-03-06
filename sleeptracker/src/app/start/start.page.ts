@@ -9,6 +9,7 @@ import { NavController, AlertController } from '@ionic/angular';
 })
 export class StartPage implements OnInit {
   lblUsername: String;
+  time=Date.now();
   constructor(private storage: Storage, public navCtrl: NavController) { }
 
   ngOnInit() {
