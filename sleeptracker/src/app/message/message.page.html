@@ -3,10 +3,43 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/start"></ion-back-button>
     </ion-buttons>
-    <ion-title>message</ion-title>
+    <ion-title>Messages</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item [routerLink] = "['/message-view']">
+      <ion-note slot="start">
+        <ion-icon name="radio-button-on"></ion-icon>
+      </ion-note>
+      <ion-label>Dr. J</ion-label>
+      <ion-note slot="end">3/2</ion-note>
+    </ion-item>
+    
+    <ion-item [routerLink] = "['/message-view']">
+      <ion-note slot="start">
+        <ion-icon name="radio-button-on"></ion-icon>
+      </ion-note>
+      <ion-label>Dr. J</ion-label>
+      <ion-note slot="end">2/26</ion-note>
+    </ion-item>
 
+    <ion-item [routerLink] = "['/message-view']">
+      <ion-note slot="start">
+        <ion-icon name="radio-button-off"></ion-icon>
+      </ion-note>
+      <ion-label>Dr. J</ion-label>
+      <ion-note slot="end">2/19</ion-note>
+    </ion-item>
+
+    <ion-item [routerLink] = "['/message-view']">
+      <ion-note slot="start">
+        <ion-icon name="radio-button-off"></ion-icon>
+      </ion-note>
+      <ion-label>Dr. J</ion-label>
+      <ion-note slot="end">2/3</ion-note>
+    </ion-item>
+
+  </ion-list>
 </ion-content>
