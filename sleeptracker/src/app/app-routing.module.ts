@@ -28,6 +28,10 @@ const routes: Routes = [
   },  {
     path: 'connect-device',
     loadChildren: () => import('./connect-device/connect-device.module').then( m => m.ConnectDevicePageModule)
+  },
+  {
+    path: 'start-sleeping',
+    loadChildren: () => import('./start-sleeping/start-sleeping.module').then( m => m.StartSleepingPageModule)
   }
 
 ];

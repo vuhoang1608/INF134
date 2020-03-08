@@ -31,5 +31,12 @@ ion-toolbar{
 
 
 .alert-wrapper.sc-ion-alert-ios{
-    background-color: gray;
+    background: gray;
+}
+.alert-wrapper.sc-ion-alert-md{
+    background: #222d49;
+    color: rgb(206, 206, 206);
+}
+.alert-radio-label.sc-ion-alert-md{
+    color:  rgb(206, 206, 206);
 }
