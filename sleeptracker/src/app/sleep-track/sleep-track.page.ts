@@ -23,7 +23,7 @@ export class SleepTrackPage implements OnInit {
   constructor(public alertController: AlertController, private storage: Storage, public navCtrl: NavController,
     public sleepService: SleepService, public toastController: ToastController) { }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.storage.get("firstname").then((fName) => {
       this.lblUsername = fName;
     });

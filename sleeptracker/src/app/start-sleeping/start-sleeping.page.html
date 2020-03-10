@@ -1,15 +1,21 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/start"></ion-back-button>
+      <ion-back-button defaultHref="/main"></ion-back-button>
     </ion-buttons>
     <ion-title>Start Sleeping</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card  class="ion-justify-content-center" >
+    <img src='./assets/icon/startsleeping.jpg' height="450">
+  </ion-card>
   <div class="ion-padding">
-    <ion-button color="primary"expand="block" [routerLink] = "['/start']">
+    <ion-button color="light"expand="block" [routerLink] = "['/main']">
       Wake up &nbsp;&nbsp;&nbsp;&nbsp; </ion-button>
   </div>
 </ion-content>
+<ion-footer>
+  
+</ion-footer>

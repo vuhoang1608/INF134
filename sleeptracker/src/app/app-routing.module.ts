@@ -10,10 +10,10 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
   },
-  {
-    path: 'start',
-    loadChildren: () => import('./start/start.module').then( m => m.StartPageModule)
-  },
+  // {
+  //   path: 'start',
+  //   loadChildren: () => import('./start/start.module').then( m => m.StartPageModule)
+  // },
   {
     path: 'message',
     loadChildren: () => import('./message/message.module').then( m => m.MessagePageModule)
@@ -25,7 +25,8 @@ const routes: Routes = [
   {
     path: 'profile',    
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
-  },  {
+  },
+  {
     path: 'connect-device',
     loadChildren: () => import('./connect-device/connect-device.module').then( m => m.ConnectDevicePageModule)
   },

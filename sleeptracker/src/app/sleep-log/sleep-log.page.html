@@ -28,7 +28,7 @@
     </ion-input>
   </ion-item>
 <ion-item>
-  <ion-range min="1" max="7" color="secondary" (ionChange) = "changeSlider()" [(ngModel)]="level" step="1" snaps color="primary">
+  <ion-range min="1" max="7" (ionChange) = "changeSlider()" [(ngModel)]="level" step="1" snaps color="primary">
     <ion-icon slot="start" size="small" name="cafe"></ion-icon>
     <ion-icon slot="end" size="small" name="bed"></ion-icon>
   </ion-range>

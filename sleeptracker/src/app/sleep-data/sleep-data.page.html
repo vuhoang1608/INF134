@@ -9,7 +9,7 @@
         <ion-slide>
           <ion-card>
             <!-- <img src='./assets/icon/sleep-log.jpg'> -->
-            <ion-card-header>Patient Name</ion-card-header>
+            <ion-card-header>Overnight Sleep Data</ion-card-header>
             <ion-card-content>              
                 <img src='./assets/icon/sleepdata.JPG'>
                 <ion-item><h1>Data</h1></ion-item>
@@ -21,7 +21,7 @@
                       {{item.dateString()}}
                     </p>
                   </ion-label>
-                  <ion-icon name="close-circle" color="primary" (click)="deleteOvernightSleepData(item)"></ion-icon>
+                  <ion-icon name="close-circle" color="danger" (click)="deleteOvernightSleepData(item)"></ion-icon>
                 </ion-item>                         
              </ion-card-content>
             </ion-card>            
@@ -60,7 +60,7 @@
                             {{item.hourString()}}
                           </p>                      
                       </ion-label>
-                      <ion-icon name="close-circle" color="primary" (click)="deleteSleepLogData(item)"></ion-icon>                      
+                      <ion-icon name="close-circle" color="danger" (click)="deleteSleepLogData(item)"></ion-icon>                      
                     </ion-item>   
                   </ion-item-sliding>
                 </ion-list>                                   
