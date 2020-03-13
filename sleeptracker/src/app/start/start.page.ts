@@ -15,7 +15,7 @@ export class StartPage implements OnInit {
     public sleepService: SleepService) { }
 
   ngOnInit() {
-    this.sleepService.addDefaultData()
+    
     this.storage.get("firstname").then((fName) => {
       this.lblUsername = fName;
     });
