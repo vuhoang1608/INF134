@@ -9,7 +9,7 @@
 
 <ion-content fullscreen>
   <div>
-    <ion-button color="primary" size="default" type="submit" class="connect" [routerLink] = "['/connect-device']" >Connect a device
+    <ion-button style="margin-left:50px" color="tertiary" size="default" type="submit" class="connect" [routerLink] = "['/connect-device']" >Connect a device
     </ion-button>
   </div>
   <ion-list lines="full" class="ion-no-margin ion-no-padding" *ngIf="!hasAcc">
@@ -55,7 +55,7 @@
 </ion-content>
 <ion-footer>
   <div class="ion-padding">
-    <ion-button expand="block" type="submit" class="ion-no-margin" (click)="presentAlertSave()">Save Changes
+    <ion-button color ="tertiary" expand="block" type="submit" class="ion-no-margin" (click)="presentAlertSave()">Save Changes
     </ion-button>
   </div>
   <div class="ion-padding" >

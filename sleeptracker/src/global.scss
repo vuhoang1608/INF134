@@ -28,19 +28,26 @@
 ion-toolbar{
     background-color: "secondary";
 }
+ion-content{
+    background-color: "primary";
+}
 
 
 .alert-wrapper.sc-ion-alert-ios{
     background: gray;
 }
 .alert-wrapper.sc-ion-alert-md{
-    background: #222d49;
+    background: abb2bc;
     color: rgb(206, 206, 206);
 }
 .alert-radio-label.sc-ion-alert-md{
     color:  rgb(206, 206, 206);
 }
 
+[aria-checked=true].sc-ion-alert-md .alert-radio-label.sc-ion-alert-md {
+    color: white;
+}
+
 a{
-    color: #3171e0;
+    color: #abb2bc;
   }
